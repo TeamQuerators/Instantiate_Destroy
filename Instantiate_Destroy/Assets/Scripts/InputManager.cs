@@ -6,8 +6,15 @@ public class InputManager : MonoBehaviour
     private bool draggingItem = false;
     private GameObject draggedObject;
     private Vector2 touchOffset;
-    
-	void Update ()
+    private Vector2 initialPosition; //goes back to orig position
+
+    private void Start()
+    {
+        initialPosition = transform.position;
+    }
+
+
+    void Update ()
 	{
 	    if (HasInput)
 	    {
@@ -61,5 +68,7 @@ public class InputManager : MonoBehaviour
     {
         draggingItem = false;
         draggedObject.transform.localScale = new Vector3(1, 1, 1);
+
+        transform.position = new Vector2(initialPosition.x, initialPosition.y); //goes back to orig position
     }
 }
